@@ -1,6 +1,11 @@
 # Apache Airflow 實戰專案：架構實踐、使用心得與開發準則
 
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-uck729%2Fmy--ubuntu--airflow-blue?logo=docker&logoColor=white)](https://hub.docker.com/r/uck729/my-ubuntu-airflow)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-rex729%2FAirFlowDemo-black?logo=github)](https://github.com/rex729/AirFlowDemo)
+
 本專案示範如何以 **Ubuntu 22.04** 為基礎映像檔，將 **Apache Airflow** 容器化打包，建構具備高穩定性、乾淨輸出與持續循環執行的現代化自動化管線（Pipeline）。
+
+* **Docker Hub 公開映像檔**：[`uck729/my-ubuntu-airflow:latest`](https://hub.docker.com/r/uck729/my-ubuntu-airflow)
 
 ---
 
@@ -16,14 +21,20 @@
 
 本專案包含一組依序執行的網頁爬蟲與資料擷取任務（Task A ➔ Task B ➔ Task C），並透過調度機制實現每隔 10 秒自動執行一輪的持續性排程作業。
 
-### 1. 建置 Docker 映像檔
+### 方法 A：直接從 Docker Hub 執行（推薦，免下載原始碼）
+只要您安裝了 Docker，全世界任何一台電腦直接輸入以下指令即可一鍵執行：
 ```powershell
-docker build -t my-ubuntu-airflow .
+docker run --rm uck729/my-ubuntu-airflow:latest
 ```
 
-### 2. 啟動容器執行
+### 方法 B：自行於本機建置並執行
+如果您複製（Clone）了本專案原始碼，亦可在本機自行編譯：
 ```powershell
-docker run --rm my-ubuntu-airflow
+# 1. 建置 Docker 映像檔
+docker build -t uck729/my-ubuntu-airflow .
+
+# 2. 啟動容器執行
+docker run --rm uck729/my-ubuntu-airflow
 ```
 > **說明**：加上 `--rm` 可以在您按 `Ctrl + C` 停止時，自動清理退出的容器，避免在硬碟累積無用的殘留實例。
 
